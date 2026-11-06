@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HLAK Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07070a;--card:#0f0f14;--line:#23232c;--red:#dc1f26;--red2:#ff4d55;--text:#f3f3f5;--mute:#9a9aa6;--blurple:#5865f2}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;
+ background:radial-gradient(ellipse at 50% 0%,#4a0d12 0%,transparent 60%),
+ linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px) 0 0/48px 48px,
+ linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px) 0 0/48px 48px}
+.en{font-family:'Rajdhani',sans-serif;direction:ltr}
+section{max-width:1000px;margin:0 auto;padding:80px 20px}
+.tag{color:var(--red2);font:700 12px 'Rajdhani';letter-spacing:.2em;text-transform:uppercase;direction:ltr;text-align:right}
+h2{font-size:2.2rem;margin:6px 0 24px}
+
+/* NAV */
+nav{position:sticky;top:12px;z-index:10;margin:12px auto 0;max-width:1000px;width:calc(100% - 32px);
+ display:flex;justify-content:space-between;align-items:center;padding:12px 18px;
+ background:rgba(15,10,12,.8);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:18px}
+.logo{display:flex;align-items:center;gap:10px;font:700 1.2rem 'Rajdhani';direction:ltr}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:14px;font:700 1rem 'Cairo';
+ text-decoration:none;color:var(--text);border:1px solid var(--line);transition:.2s;cursor:pointer}
+.btn:hover{transform:translateY(-2px)}
+.btn.red{background:var(--red);border-color:#ff5a5f;box-shadow:0 0 24px rgba(220,31,38,.35)}
+.btn.discord{background:rgba(88,101,242,.15);border-color:rgba(88,101,242,.5);color:#aab2ff}
+
+/* HERO */
+.hero{min-height:88vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:22px}
+.pill{background:var(--card);border:1px solid var(--line);padding:8px 22px;border-radius:12px;font:600 .9rem 'Rajdhani';letter-spacing:.12em}
+.pill i{display:inline-block;width:9px;height:9px;background:var(--red);border-radius:2px;margin-right:8px;box-shadow:0 0 10px var(--red)}
+.hero h1{font:700 clamp(3rem,13vw,6.5rem)/.95 'Rajdhani';direction:ltr;letter-spacing:-.02em}
+.hero h1 span:first-child{display:block;background:linear-gradient(#fff,#bbb);-webkit-background-clip:text;color:transparent}
+.hero h1 span:last-child{display:block;background:linear-gradient(#e8262d,#b8353b);-webkit-background-clip:text;color:transparent}
+.hero p{max-width:620px;color:var(--mute);font-size:1.1rem}
+.row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+
+/* CARDS */
+.card{background:linear-gradient(160deg,#16090c,var(--card) 60%);border:1px solid var(--line);border-radius:20px;padding:26px}
+.card p{color:var(--mute)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.svc .n{font:700 .8rem 'Rajdhani';color:var(--mute)}
+.svc .ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:1.4rem;
+ background:rgba(220,31,38,.12);border:1px solid rgba(220,31,38,.4);margin-bottom:12px}
+.svc h3{font:700 1.3rem 'Rajdhani';direction:ltr;text-align:right}
+.svc li{color:var(--mute);font-size:.9rem;list-style:none}
+
+/* TEAM */
+.member{text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
+.avatar{width:96px;height:96px;border-radius:24px;object-fit:cover;background:#1b1b23;border:1px solid var(--line);
+ display:grid;place-items:center;font:700 2rem 'Rajdhani'}
+.member h3{font-size:1.2rem}
+.handle{color:var(--mute);font:600 .85rem 'Rajdhani';direction:ltr}
+.role{font:700 .7rem 'Rajdhani';letter-spacing:.1em;padding:4px 14px;border-radius:8px;border:1px solid var(--line);background:#1d1d25;margin:6px 0}
+.role.dev{color:#7fb2ff;border-color:rgba(80,140,255,.4);background:rgba(80,140,255,.1)}
+.member a.view{width:100%;display:flex;justify-content:space-between;margin-top:8px;padding-top:12px;border-top:1px solid var(--line);
+ color:var(--mute);text-decoration:none;font:600 .8rem 'Rajdhani';direction:ltr}
+.member a.view:hover{color:var(--red2)}
+
+/* CTA + FOOTER */
+.cta{text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+.cta h2{font:700 clamp(2.4rem,9vw,4.5rem)/1 'Rajdhani';direction:ltr}
+.cta h2 em{font-style:normal;color:var(--red2)}
+footer{text-align:center;padding:40px 20px;border-top:1px solid var(--line);color:var(--mute);font-size:.85rem}
+.reveal{opacity:0;transform:translateY(24px);transition:.7s}
+.reveal.show{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="btn red" href="https://discord.gg/YOUR_INVITE">تواصل معنا</a>
+  <div class="logo">HLAK STUDIO <span style="color:var(--red)">⚡</span></div>
+</nav>
+
+<section class="hero">
+  <div class="pill en"><i></i>HLAK STUDIO</div>
+  <h1><span>WE BUILD</span><span>WE CREATE</span></h1>
+  <p>استوديو تقني وإبداعي يعمل على بناء تجارب رقمية ومشاريع مبتكرة في عالم الألعاب والتقنية.</p>
+  <div class="row">
+    <a class="btn discord" href="https://discord.gg/YOUR_INVITE">انضم لنا 🎮</a>
+    <a class="btn" href="#team">تعرف على الفريق</a>
+  </div>
+</section>
+
+<section class="reveal" id="about">
+  <div class="tag">About HLAK</div>
+  <h2>من نحن؟</h2>
+  <div class="card" style="margin-bottom:16px">
+    <h3 style="margin-bottom:8px">HLAK Studio</h3>
+    <p>نعمل على تحويل الأفكار إلى مشاريع حقيقية من خلال فريق من المطورين والمبدعين. نؤمن أن المشروع الناجح لا يعتمد فقط على الكود، بل على الفكرة والجودة والتفاصيل والتجربة.</p>
+  </div>
+  <div class="card">
+    <div class="tag">Our Vision</div>
+    <h3 style="margin:6px 0">أن نصبح من الاستوديوهات العربية الرائدة في تطوير الألعاب والتقنيات الرقمية.</h3>
+    <div class="tag" style="color:var(--red2)">WE BUILD. WE CREATE.</div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="tag">What We Do</div>
+  <h2>مجالاتنا</h2>
+  <div class="grid" id="services"></div>
+</section>
+
+<section class="reveal" id="team">
+  <div class="tag">The Team</div>
+  <h2><span class="en">HLAK</span> فريق</h2>
+  <p style="color:var(--mute);margin:-12px 0 24px">تعرف على الأشخاص الذين يقفون خلف مشاريع HLAK Studio.</p>
+  <div class="grid" id="teamGrid"></div>
+</section>
+
+<section class="cta reveal">
+  <div class="tag" style="text-align:center">HLAK STUDIO</div>
+  <h2>LET'S BUILD<br><em>SOMETHING GREAT.</em></h2>
+  <p style="color:var(--mute)">We Build. We Create.</p>
+  <a class="btn discord" href="https://discord.gg/YOUR_INVITE">انضم لسيرفرنا على Discord 🎮</a>
+</section>
+
+<footer><div class="logo" style="justify-content:center;margin-bottom:8px">HLAK STUDIO ⚡</div>
+HLAK Studio. All rights reserved 2026 ©</footer>
+
+<script>
+/* ============ عدّل هنا فقط ============ */
+// الحسابات: الاسم، اليوزر، الدور، رابط الصورة، ID الحساب في ديسكورد
+const TEAM = [
+  { name: "اسم العضو 1", handle: "@username1", role: "CREATOR & FOUNDER", type: "",
+    avatar: "https://cdn.discordapp.com/avatars/USER_ID/AVATAR_HASH.png?size=256", id: "USER_ID" },
+  { name: "اسم العضو 2", handle: "@username2", role: "CO-OWNER", type: "",
+    avatar: "", id: "USER_ID" },
+  { name: "اسم العضو 3", handle: "@username3", role: "DEVELOPER", type: "dev",
+    avatar: "", id: "USER_ID" },
+];
+const SERVICES = [
+  { ic: "🎲", t: "Roblox Development", d: ["تطوير الألعاب والأنظمة والتجارب داخل Roblox."] },
+  { ic: "🤖", t: "Discord Development", d: ["تطوير البوتات والأنظمة المتقدمة للمجتمعات."] },
+  { ic: "🚗", t: "FiveM Development", d: ["بناء أنظمة وسكربتات مخصصة لمشاريع FiveM."] },
+  { ic: "🌐", t: "Web Development", d: ["تصميم وتطوير مواقع ولوحات تحكم حديثة."] },
+];
+/* ====================================== */
+
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+document.getElementById('services').innerHTML = SERVICES.map((s, i) => `
+  <div class="card svc"><div class="n">0${i+1}</div><div class="ic">${s.ic}</div>
+  <h3>${esc(s.t)}</h3><ul>${s.d.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>`).join('');
+
+document.getElementById('teamGrid').innerHTML = TEAM.map((m, i) => `
+  <div class="card member">
+    <div class="n en" style="align-self:flex-start;color:var(--mute);font-size:.8rem">0${i+1}</div>
+    ${m.avatar
+      ? `<img class="avatar" src="${esc(m.avatar)}" alt="${esc(m.name)}" onerror="this.outerHTML='<div class=avatar>${esc(m.name[0])}</div>'">`
+      : `<div class="avatar">${esc(m.name[0])}</div>`}
+    <h3>${esc(m.name)}</h3>
+    <div class="handle">${esc(m.handle)}</div>
+    <div class="role ${m.type}">${esc(m.role)}</div>
+    <a class="view" href="https://discord.com/users/${esc(m.id)}" target="_blank" rel="noopener"><span>View Profile</span><span>↗</span></a>
+  </div>`).join('');
+
+// ظهور تدريجي عند التمرير
+const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('show')), {threshold:.1});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
